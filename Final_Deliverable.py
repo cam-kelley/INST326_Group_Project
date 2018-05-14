@@ -2,7 +2,7 @@ import random
 import csv
 
 
-class Flashcard:
+class Flashcard:  # Jinyhup
     def __init__(self):
         print("Welcome to flashcards!")
         print("Please input questions and their corresponding answers. When finished, enter 'DONE' into the "
@@ -12,7 +12,7 @@ class Flashcard:
         self.flashcard = []
         self.correct = 0
 
-    def user_input(self):
+    def user_input(self):  #Jinyhup and Cam; user inputs Q's and A's, or uploads a csv file
         while True:
             upload = input('Would you like to upload a CSV file? Enter "Yes" or "No": ')
             if upload == "No":
@@ -35,7 +35,7 @@ class Flashcard:
                 print('Please enter either "Yes" or "No"')
                 continue
 
-    def test(self):
+    def test(self):  # Jinyhup and Cam, user is tested
         answer = 0
         while True:
             q_a_number = random.randint(0, len(self.flashcard) - 1)
@@ -51,7 +51,7 @@ class Flashcard:
             if answer == len(self.flashcard):
                 break
 
-    def print_result(self, verbose=False):
+    def print_result(self, verbose=False):  # Jinyhup and Cam, user sees what they got correct/incorrect
         if verbose:
             for i in range(len(self.flashcard)):
                 if self.flashcard[i][2] == 1:
@@ -60,7 +60,7 @@ class Flashcard:
                     print("Question ({}): Incorrect".format(self.flashcard[i][0]))
             print("Total number of the correct answers: {} out of {}".format(self.correct, len(self.flashcard)))
 
-    def csv_creator(self):
+    def csv_creator(self):  # Cam and Donovan, user has the option to create a csv file
         while True:
             creation = input("Would you like a CSV file of your questions and answers? Yes or No?: ")
             if creation == "No":
