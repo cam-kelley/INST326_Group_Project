@@ -1,4 +1,5 @@
 import random
+import csv
 
 
 class Flashcard:
@@ -20,13 +21,18 @@ class Flashcard:
                     break
                 answer = str(input("Your answer: "))
                 self.flashcard.append([question, answer, -1])
-            elif upload == "Yes":  # This part should start a csv upload to the program so that questions and answers
-                                    # are loaded into the def test(): function
-                pass
-                '''upload_csv = input("Enter the file name you would like to use, in the form 'example.csv': ")
-                the_file = open(upload_csv, 'r')'''
+            elif upload == "Yes":
+                upload_csv = input("Enter the file name you would like to use, in the form 'example.csv': ")
+                the_file = open(upload_csv, 'r')
+                reader = csv.DictReader(the_file)
+                for row in reader:
+                    the_q = row['Question']
+                    the_a = row['Answer']
+                    self.flashcard.append([the_q, the_a, -1])
+                break
             else:
                 print('Please enter either "Yes" or "No"')
+                continue
 
     def test(self):
         answer = 0
@@ -69,7 +75,7 @@ class Flashcard:
                 download_csv = "Flashcards.csv"
                 flash_file = open(download_csv, 'w')
 
-                columnTitleRow = "Question, Answer\n"
+                columnTitleRow = "Question,Answer\n"
                 flash_file.write(columnTitleRow)
 
                 for key in flashcards.keys():
